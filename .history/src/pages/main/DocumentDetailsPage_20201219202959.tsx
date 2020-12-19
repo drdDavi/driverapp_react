@@ -3,7 +3,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 import { useHistory, useParams } from 'react-router-dom';
 import { DocumentModel, DocumentItemModel, IDocumentItem } from '../../models/DocumentModel';
 import { fireFirestore } from '../../firebase/firebase';
-import { Button, Container, Divider, Grid, LinearProgress, Paper, Typography } from '@material-ui/core';
+import { Button, Container, Divider, Grid, Paper, Typography } from '@material-ui/core';
 import { FirestoreService } from '../../models_services/FirestoreService';
 import { useSnackbar } from 'notistack';
 import ZTextField from '../../components/ZTextField';
@@ -34,8 +34,6 @@ const DocumentDetailsPage: React.FC<Props> = () => {
 
   const updateDocument = async () => {
     if (document) {
-      setIsLoading(true);
-
       const res = await FirestoreService.documentUpdate(document);
       if (res) {
         history.push(`/documents`);
@@ -44,12 +42,9 @@ const DocumentDetailsPage: React.FC<Props> = () => {
         enqueueSnackbar('Error updating document');
       }
     }
-    setIsLoading(false);
-
   };
   const updateDocumentEntry = async () => {
     if (documentEntry && document) {
-      setIsLoading(true);
       console.log(documentEntry);
       console.log(document.id);
       const res = await FirestoreService.updateDocumentEntry(documentEntry, document?.id);
@@ -59,8 +54,6 @@ const DocumentDetailsPage: React.FC<Props> = () => {
         enqueueSnackbar('Error updating document');
       }
     }
-    setIsLoading(false);
-
   };
 
   React.useEffect(() => {
@@ -135,17 +128,15 @@ const DocumentDetailsPage: React.FC<Props> = () => {
 
   return (
     <>
-      {isLoading && (<LinearProgress className={classes.textField} />)}
       {!isLoading && (
-        <div >
+        <div>
           <Container maxWidth='xl'>
             <Grid container alignItems='flex-start'>
-              <Grid md={5} item container>
+              <Grid md={6} item container>
                 <Grid className={classes.buttonWrapper} container item xs={12} md={12} justify='center'>
-                  <Button className={classes.button} color='primary' variant='contained' onClick={updateDocumentEntry} disabled={isLoading} >
+                  <Button className={classes.button} color='primary' variant='contained' onClick={updateDocumentEntry} disabled={isLoding} >
                     Save Entered Data
                   </Button>
-
                 </Grid>
                 <Paper className={classes.paper}>
                   <SectionDivider heading='Information' />
@@ -336,7 +327,7 @@ const DocumentDetailsPage: React.FC<Props> = () => {
                       setDocumentEntry((prev) => ({ ...prev, vehicleModel: v } as DocumentEntryModel));
                     }}
                     label='Vehicle year'
-                    defaultValue={documentEntry?.vehicleYear}
+                    defaultValue={documentEntry?.vehicleModel}
                   />
                   <ZTimeDatePicker
                     className={classes.textField}
@@ -370,7 +361,7 @@ const DocumentDetailsPage: React.FC<Props> = () => {
                       setDocumentEntry((prev) => ({ ...prev, alternateId: v } as DocumentEntryModel));
                     }}
                     label='Alt ID name'
-                    defaultValue={documentEntry?.alternateIdName}
+                    defaultValue={documentEntry?.alternateId}
                   />
 
                   <ZTimeDatePicker
@@ -439,12 +430,11 @@ const DocumentDetailsPage: React.FC<Props> = () => {
 };
 
 const useStyles = makeStyles((theme: Theme) => ({
-
   paper: {
     margin: '0px 20px',
     padding: 10,
     width: '100%',
-    minHeight: 800,
+    minHeight: 920,
     maxHeight: `calc(100vh - 200px)`,
     overflow: 'hidden',
     overflowY: 'auto'

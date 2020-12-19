@@ -34,8 +34,6 @@ const DocumentDetailsPage: React.FC<Props> = () => {
 
   const updateDocument = async () => {
     if (document) {
-      setIsLoading(true);
-
       const res = await FirestoreService.documentUpdate(document);
       if (res) {
         history.push(`/documents`);
@@ -44,12 +42,10 @@ const DocumentDetailsPage: React.FC<Props> = () => {
         enqueueSnackbar('Error updating document');
       }
     }
-    setIsLoading(false);
-
   };
   const updateDocumentEntry = async () => {
     if (documentEntry && document) {
-      setIsLoading(true);
+      setIsLoading(true):
       console.log(documentEntry);
       console.log(document.id);
       const res = await FirestoreService.updateDocumentEntry(documentEntry, document?.id);
@@ -135,16 +131,16 @@ const DocumentDetailsPage: React.FC<Props> = () => {
 
   return (
     <>
-      {isLoading && (<LinearProgress className={classes.textField} />)}
       {!isLoading && (
-        <div >
+        <div>
           <Container maxWidth='xl'>
             <Grid container alignItems='flex-start'>
-              <Grid md={5} item container>
+              <Grid md={6} item container>
                 <Grid className={classes.buttonWrapper} container item xs={12} md={12} justify='center'>
                   <Button className={classes.button} color='primary' variant='contained' onClick={updateDocumentEntry} disabled={isLoading} >
                     Save Entered Data
                   </Button>
+                  {isLoading && (<LinearProgress className={classes.textField} />)}
 
                 </Grid>
                 <Paper className={classes.paper}>
@@ -336,7 +332,7 @@ const DocumentDetailsPage: React.FC<Props> = () => {
                       setDocumentEntry((prev) => ({ ...prev, vehicleModel: v } as DocumentEntryModel));
                     }}
                     label='Vehicle year'
-                    defaultValue={documentEntry?.vehicleYear}
+                    defaultValue={documentEntry?.vehicleModel}
                   />
                   <ZTimeDatePicker
                     className={classes.textField}
@@ -370,7 +366,7 @@ const DocumentDetailsPage: React.FC<Props> = () => {
                       setDocumentEntry((prev) => ({ ...prev, alternateId: v } as DocumentEntryModel));
                     }}
                     label='Alt ID name'
-                    defaultValue={documentEntry?.alternateIdName}
+                    defaultValue={documentEntry?.alternateId}
                   />
 
                   <ZTimeDatePicker
@@ -439,12 +435,11 @@ const DocumentDetailsPage: React.FC<Props> = () => {
 };
 
 const useStyles = makeStyles((theme: Theme) => ({
-
   paper: {
     margin: '0px 20px',
     padding: 10,
     width: '100%',
-    minHeight: 800,
+    minHeight: 920,
     maxHeight: `calc(100vh - 200px)`,
     overflow: 'hidden',
     overflowY: 'auto'

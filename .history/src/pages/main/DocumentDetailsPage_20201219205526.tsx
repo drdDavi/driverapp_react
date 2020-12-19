@@ -147,7 +147,7 @@ const DocumentDetailsPage: React.FC<Props> = () => {
                   </Button>
 
                 </Grid>
-                <Paper className={classes.paper}>
+                <Paper >
                   <SectionDivider heading='Information' />
                   <ZTextField
                     className={classes.textField}
@@ -444,7 +444,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     margin: '0px 20px',
     padding: 10,
     width: '100%',
-    minHeight: 800,
+    minHeight: 920,
     maxHeight: `calc(100vh - 200px)`,
     overflow: 'hidden',
     overflowY: 'auto'

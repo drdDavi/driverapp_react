@@ -137,10 +137,10 @@ const DocumentDetailsPage: React.FC<Props> = () => {
     <>
       {isLoading && (<LinearProgress className={classes.textField} />)}
       {!isLoading && (
-        <div >
+        <div>
           <Container maxWidth='xl'>
             <Grid container alignItems='flex-start'>
-              <Grid md={5} item container>
+              <Grid md={6} item container>
                 <Grid className={classes.buttonWrapper} container item xs={12} md={12} justify='center'>
                   <Button className={classes.button} color='primary' variant='contained' onClick={updateDocumentEntry} disabled={isLoading} >
                     Save Entered Data
@@ -439,13 +439,12 @@ const DocumentDetailsPage: React.FC<Props> = () => {
 };
 
 const useStyles = makeStyles((theme: Theme) => ({
-
   paper: {
     margin: '0px 20px',
     padding: 10,
     width: '100%',
-    minHeight: 800,
-    maxHeight: `calc(100vh - 200px)`,
+    minHeight: 900,
+    maxHeight: 500,
     overflow: 'hidden',
     overflowY: 'auto'
   },
