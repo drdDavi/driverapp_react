@@ -3,6 +3,7 @@ export class DocumentEntryModel implements IDocumentModel {
   firstName: string;
   id: string;
   lastName: string;
+  dateOfBirth: Date | null;
   phoneNumber: string;
   driversLicenseId: string;
   driversLicenseIssueDate: Date | null;
@@ -68,6 +69,7 @@ export class DocumentEntryModel implements IDocumentModel {
       this.vehicleVin = x.vehicleVin;
       this.vehicleModel = x.vehicleModel;
       this.vehicleYear = x.vehicleYear;
+      this.dateOfBirth = x.dateOfBirth;
     }
   }
 
@@ -107,7 +109,8 @@ export class DocumentEntryModel implements IDocumentModel {
         vehicleRegistrationDate: null,
         vehicleRegistrationExpDate: null,
         vehicleVin: '',
-        vehicleYear: ''
+        vehicleYear: '',
+        dateOfBirth: null
       });
 
     return new DocumentEntryModel({
@@ -142,6 +145,7 @@ export class DocumentEntryModel implements IDocumentModel {
       vehicleModel: data['vehicleModel'] ?? '',
       vehicleRegistrationDate: data['vehicleRegistrationDate']?.toDate() ?? null,
       vehicleRegistrationExpDate: data['vehicleRegistrationExpDate']?.toDate() ?? null,
+      dateOfBirth: data['dateOfBirth']?.toDate() ?? null,
       vehicleVin: data['vehicleVin'] ?? '',
       vehicleYear: data['vehicleYear'] ?? ''
     });
@@ -182,4 +186,5 @@ interface IDocumentModel {
   timestampCreated: Date | null;
   uid: string;
   userId: string;
+  dateOfBirth: Date | null;
 }

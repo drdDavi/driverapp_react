@@ -10,7 +10,7 @@ import ZTextField from '../../components/ZTextField';
 import { DocumentEntryModel } from '../../models/DocumentEntryModel';
 import ZTimeDatePicker from '../../components/ZTimeDatePicker';
 
-interface Props { }
+interface Props {}
 
 interface ParamTypes {
   id: string;
@@ -45,7 +45,6 @@ const DocumentDetailsPage: React.FC<Props> = () => {
       }
     }
     setIsLoading(false);
-
   };
   const updateDocumentEntry = async () => {
     if (documentEntry && document) {
@@ -60,7 +59,6 @@ const DocumentDetailsPage: React.FC<Props> = () => {
       }
     }
     setIsLoading(false);
-
   };
 
   React.useEffect(() => {
@@ -135,17 +133,16 @@ const DocumentDetailsPage: React.FC<Props> = () => {
 
   return (
     <>
-      {isLoading && (<LinearProgress className={classes.textField} />)}
+      {isLoading && <LinearProgress className={classes.textField} />}
       {!isLoading && (
-        <div >
+        <div>
           <Container maxWidth='xl'>
             <Grid container alignItems='flex-start'>
               <Grid md={5} item container>
                 <Grid className={classes.buttonWrapper} container item xs={12} md={12} justify='center'>
-                  <Button className={classes.button} color='primary' variant='contained' onClick={updateDocumentEntry} disabled={isLoading} >
+                  <Button className={classes.button} color='primary' variant='contained' onClick={updateDocumentEntry} disabled={isLoading}>
                     Save Entered Data
                   </Button>
-
                 </Grid>
                 <Paper className={classes.paper}>
                   <SectionDivider heading='Information' />
@@ -175,9 +172,15 @@ const DocumentDetailsPage: React.FC<Props> = () => {
                     defaultValue={documentEntry?.lastName}
                   />
 
-                  {/* <ZTextField className={classes.textField}   onChange={(v) => {
-                  setDocumentEntry((prev) => ({ ...prev, email: v } as DocumentEntryModel));
-                }} label='Date of birth'defaultValue={documentEntry?.email} /> */}
+                  <ZTimeDatePicker
+                    className={classes.textField}
+                    label='Date of birth'
+                    defaultValue={documentEntry?.dateOfBirth}
+                    onChange={(v) => {
+                      setDocumentEntry((prev) => ({ ...prev, dateOfBirth: v } as DocumentEntryModel));
+                    }}
+                  />
+
                   <ZTextField
                     className={classes.textField}
                     onChange={(v) => {
@@ -439,7 +442,6 @@ const DocumentDetailsPage: React.FC<Props> = () => {
 };
 
 const useStyles = makeStyles((theme: Theme) => ({
-
   paper: {
     margin: '0px 20px',
     padding: 10,
