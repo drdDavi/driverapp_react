@@ -132,20 +132,20 @@ const DocumentDetailsPage: React.FC<Props> = () => {
           >
             Resubmit
           </Button>
-          <Divider orientation='vertical' />
-          <Button
-            className={classes.buttonRotate}
-            variant='contained'
-            color='secondary'
-            startIcon={<RotateRightIcon />}
-            size='small'
-            onClick={async () => {
-              setDegree(degree + 90);
 
-            }}
-          >  Rotate
-          </Button>
         </Grid>
+        <Button
+          className={classes.buttonRotate}
+          variant='contained'
+          color='secondary'
+          startIcon={<RotateRightIcon />}
+          size='small'
+          onClick={async () => {
+            setDegree(degree + 90);
+
+          }}
+        >  Rotate
+          </Button>
       </>
     );
   };

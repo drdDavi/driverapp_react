@@ -9,7 +9,7 @@ import { useSnackbar } from 'notistack';
 import ZTextField from '../../components/ZTextField';
 import { DocumentEntryModel } from '../../models/DocumentEntryModel';
 import ZTimeDatePicker from '../../components/ZTimeDatePicker';
-import RotateRightIcon from '@material-ui/icons/RotateRight';
+
 interface Props { }
 
 interface ParamTypes {
@@ -84,18 +84,12 @@ const DocumentDetailsPage: React.FC<Props> = () => {
   };
 
   const DocumentItem: React.FC<PropsDocumentItem> = ({ documentItem, objectName, heading }) => {
-
-    const [degree, setDegree] = React.useState<number>(0);
-
-
-
     return (
       <>
         <Typography className={classes.documentItemTitle}>{heading}</Typography>
-        <img className={classes.image} src={documentItem?.imageUrl} alt='' style={{ transform: `rotate(${degree}deg)` }} />
+        <img className={classes.image} src={documentItem?.imageUrl} alt='' />
         <div />
         <Grid className={classes.buttonGrid} container justify='center'>
-
           <Button
             className={classes.button}
             variant='contained'
@@ -131,19 +125,6 @@ const DocumentDetailsPage: React.FC<Props> = () => {
             }}
           >
             Resubmit
-          </Button>
-          <Divider orientation='vertical' />
-          <Button
-            className={classes.buttonRotate}
-            variant='contained'
-            color='secondary'
-            startIcon={<RotateRightIcon />}
-            size='small'
-            onClick={async () => {
-              setDegree(degree + 90);
-
-            }}
-          >  Rotate
           </Button>
         </Grid>
       </>
@@ -500,9 +481,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   buttonGrid: {
     marginTop: 10
   },
-  buttonRotate: {
-    marginLeft: 10
-  },
   buttonWrapper: {
     marginBottom: 10
   },
@@ -516,10 +494,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: 550,
     height: 550,
     margin: 4,
-
-  },
-  transform: {
-    transform: 'rotate(90deg)'
+    transform: 'rotate(45deg)'
   },
   textField: {
     width: '100%',

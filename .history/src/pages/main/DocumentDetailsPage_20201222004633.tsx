@@ -501,7 +501,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: 10
   },
   buttonRotate: {
-    marginLeft: 10
+    paddingLeft: 20,
+
   },
   buttonWrapper: {
     marginBottom: 10

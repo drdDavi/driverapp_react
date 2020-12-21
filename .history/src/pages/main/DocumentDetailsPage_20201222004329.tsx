@@ -132,7 +132,6 @@ const DocumentDetailsPage: React.FC<Props> = () => {
           >
             Resubmit
           </Button>
-          <Divider orientation='vertical' />
           <Button
             className={classes.buttonRotate}
             variant='contained'

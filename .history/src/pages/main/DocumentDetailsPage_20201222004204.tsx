@@ -95,7 +95,19 @@ const DocumentDetailsPage: React.FC<Props> = () => {
         <img className={classes.image} src={documentItem?.imageUrl} alt='' style={{ transform: `rotate(${degree}deg)` }} />
         <div />
         <Grid className={classes.buttonGrid} container justify='center'>
+          <Button
+            className={classes.button}
+            variant='contained'
+            color={documentItem?.state === 'Reviewing' ? 'primary' : undefined}
+            size='small'
+            onClick={async () => {
+              setDegree(degree + 90);
 
+              console.log(document);
+            }}
+          >
+            Transform
+          </Button>
           <Button
             className={classes.button}
             variant='contained'
@@ -132,16 +144,14 @@ const DocumentDetailsPage: React.FC<Props> = () => {
           >
             Resubmit
           </Button>
-          <Divider orientation='vertical' />
           <Button
-            className={classes.buttonRotate}
             variant='contained'
             color='secondary'
             startIcon={<RotateRightIcon />}
             size='small'
             onClick={async () => {
               setDegree(degree + 90);
-
+              console.log(document);
             }}
           >  Rotate
           </Button>
@@ -499,9 +509,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   buttonGrid: {
     marginTop: 10
-  },
-  buttonRotate: {
-    marginLeft: 10
   },
   buttonWrapper: {
     marginBottom: 10

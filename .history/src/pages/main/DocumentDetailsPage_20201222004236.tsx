@@ -132,9 +132,7 @@ const DocumentDetailsPage: React.FC<Props> = () => {
           >
             Resubmit
           </Button>
-          <Divider orientation='vertical' />
           <Button
-            className={classes.buttonRotate}
             variant='contained'
             color='secondary'
             startIcon={<RotateRightIcon />}
@@ -499,9 +497,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   buttonGrid: {
     marginTop: 10
-  },
-  buttonRotate: {
-    marginLeft: 10
   },
   buttonWrapper: {
     marginBottom: 10
